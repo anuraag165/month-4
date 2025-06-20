@@ -1,164 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Four Months of Memories</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Four Months of You</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --primary: #355C7D;
-      --secondary: #6C5B7B;
-      --accent: #C06C84;
-      --light-bg: #F8B195;
-      --dark-text: #2A363B;
-      --text: #59474A;
+      --bg-top: #a8edea;
+      --bg-bot: #fed6e3;
+      --text-dark: #2e2e2e;
+      --accent: #ff6f91;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Raleway', sans-serif;
-      background: var(--light-bg);
-      color: var(--dark-text);
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh; overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--bg-top), var(--bg-bot));
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
     }
-    .slider {
+
+    .section {
       position: relative;
-      width: 90vw; max-width: 360px;
-      height: 70vh; max-height: 460px;
-      perspective: 1200px;
-    }
-    .slide {
-      position: absolute; top:0; left:0;
-      width:100%; height:100%;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      padding: 1.5em;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      backface-visibility: hidden;
-      transform-origin: left center;
-      transition: transform .7s ease, opacity .4s ease;
-      opacity: 1;
-    }
-    .slide.hidden { opacity: 0; pointer-events: none; }
-    .nav {
-      position: absolute; top:50%;
-      transform: translateY(-50%);
-      font-size: 2em; color: var(--secondary);
-      width: 40px; height: 40px; line-height: 40px;
-      text-align: center; cursor: pointer;
-      user-select: none;
-      z-index: 10;
-    }
-    .nav.left { left: -10px; }
-    .nav.right { right: -10px; }
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--primary);
-      margin-bottom: 0.5em;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      scroll-snap-align: start;
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease-out, transform .6s ease-out;
     }
-    .text {
-      font-size: 1em; line-height: 1.6;
-      text-align: center; color: var(--text);
-      margin: 0 1em;
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .dot-container {
-      display: flex; gap: 6px; margin-top: 1.5em;
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: .5rem;
     }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #ccc; transition: background .3s, transform .3s;
+
+    p {
+      font-size: 1.1rem;
+      max-width: 80%;
+      line-height: 1.5;
     }
-    .dot.active { background: var(--accent); transform: scale(1.3); }
+
+    /* subtle sparkles */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: .8;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.2);
+      }
+
+      100% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <div class="slider" id="slider">
-    <div class="nav left" id="prev">‹</div>
-    <div class="nav right" id="next">›</div>
+  <div class="section" id="s1">
+    <h1>120 Days of Kindness</h1>
+    <p>Raveena, your warmth lights up every room you enter. Your kindness is a gift to everyone who knows you.</p>
+  </div>
 
-    <!-- Slide 1 -->
-    <div class="slide" data-index="0">
-      <h2>120 Days Together</h2>
-      <p class="text">
-        From our first coffee date to this very moment, every day has been a new adventure.
-      </p>
-    </div>
-    <!-- Slide 2 -->
-    <div class="slide hidden" data-index="1">
-      <h2>Your Laughter</h2>
-      <p class="text">
-        Your laughter became my favorite melody. It brightens even the cloudiest days.
-      </p>
-    </div>
-    <!-- Slide 3 -->
-    <div class="slide hidden" data-index="2">
-      <h2>Your Strength</h2>
-      <p class="text">
-        Watching you face challenges with grace reminds me how lucky I am to stand beside you.
-      </p>
-    </div>
-    <!-- Slide 4 -->
-    <div class="slide hidden" data-index="3">
-      <h2>Your Kindness</h2>
-      <p class="text">
-        Your kindness inspires me to be a better person every single day.
-      </p>
-    </div>
-    <!-- Slide 5 -->
-    <div class="slide hidden" data-index="4">
-      <h2>Our Shared Dreams</h2>
-      <p class="text">
-        Building dreams with you has been the greatest joy—thank you for dreaming with me.
-      </p>
-    </div>
-    <!-- Slide 6 -->
-    <div class="slide hidden" data-index="5">
-      <h2>Here's to Us</h2>
-      <p class="text">
-        Cheers to four months of memories—and to countless more waiting just around the corner.
-      </p>
-    </div>
+  <div class="section" id="s2">
+    <h1>Your Generosity</h1>
+    <p>Whether it’s a smile, a helping hand, or a thoughtful word, you always give more than you take.</p>
+  </div>
 
-    <div class="dot-container" id="dots">
-      <div class="dot active" data-index="0"></div>
-      <div class="dot" data-index="1"></div>
-      <div class="dot" data-index="2"></div>
-      <div class="dot" data-index="3"></div>
-      <div class="dot" data-index="4"></div>
-      <div class="dot" data-index="5"></div>
-    </div>
+  <div class="section" id="s3">
+    <h1>Your Strength</h1>
+    <p>Through ups and downs, you stand tall with grace. Watching you navigate life inspires me every day.</p>
+  </div>
+
+  <div class="section" id="s4">
+    <h1>Your Laughter</h1>
+    <p>Your laugh is a reminder that joy can be found in the simplest moments.</p>
+  </div>
+
+  <div class="section" id="s5">
+    <h1>Our Shared Moments</h1>
+    <p>From quiet talks to big adventures, every moment with you feels like home.</p>
+  </div>
+
+  <div class="section" id="s6">
+    <h1>Here’s to You</h1>
+    <p>Thank you for being exactly who you are. Four months down, countless memories to go.</p>
   </div>
 
   <script>
-    const slides = document.querySelectorAll('.slide');
-    const dots   = document.querySelectorAll('.dot');
-    let current = 0;
+    // Reveal on scroll
+    const sections = document.querySelectorAll('.section');
+    const opts = { threshold: 0.3 };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, opts);
+    sections.forEach(s => io.observe(s));
 
-    function showSlide(idx) {
-      slides.forEach(s => s.classList.add('hidden'));
-      dots.forEach(d => d.classList.remove('active'));
-      slides[idx].classList.remove('hidden');
-      dots[idx].classList.add('active');
-      current = idx;
+    // add random sparkles
+    function makeSparkles() {
+      const count = 30;
+      for (let i = 0; i < count; i++) {
+        const sp = document.createElement('div');
+        sp.className = 'sparkle';
+        sp.style.top = Math.random() * 100 + 'vh';
+        sp.style.left = Math.random() * 100 + 'vw';
+        sp.style.animationDelay = Math.random() * 4 + 's';
+        document.body.append(sp);
+      }
     }
-
-    document.getElementById('next').onclick = () => {
-      const nxt = current < slides.length - 1 ? current + 1 : 0;
-      showSlide(nxt);
-    };
-    document.getElementById('prev').onclick = () => {
-      const prev = current > 0 ? current - 1 : slides.length - 1;
-      showSlide(prev);
-    };
-    dots.forEach(dot => {
-      dot.onclick = () => showSlide(Number(dot.dataset.index));
-    });
+    makeSparkles();
   </script>
-
 </body>
+
 </html>
