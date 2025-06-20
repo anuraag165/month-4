@@ -4,52 +4,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Our 3-Month Journey</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Amatic+SC:wght@700&family=Dancing+Script:wght@700&display=swap"
+  <title>Our Four-Month Milestone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;600&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* reset & disable zoom */
     :root {
-      --primary: #ff6b8b;
-      --secondary: #ff8e9e;
-      --accent: #ff4757;
-      --light: #fff5f7;
-      --dark: #333;
-      --text: #555;
+      --primary: #355C7D;
+      /* deep blue */
+      --secondary: #6C5B7B;
+      /* purple */
+      --accent: #C06C84;
+      /* pinkish */
+      --light-bg: #F8B195;
+      /* soft peach */
+      --dark-text: #2A363B;
+      /* near-black */
+      --text: #59474A;
+      /* muted brown */
     }
 
-    html,
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      touch-action: manipulation;
-      overflow-y: auto;
-      background: linear-gradient(135deg, #fff5f7, #ffeef0);
-      font-family: 'Quicksand', sans-serif;
-      color: var(--text);
     }
 
     body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--light-bg);
+      color: var(--dark-text);
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* —— Flip-book container —— */
+    h1,
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      margin-bottom: 0.5em;
+    }
+
     .book {
       position: relative;
       width: 90vw;
+      max-width: 380px;
       height: 70vh;
-      max-width: 400px;
-      max-height: 500px;
-      perspective: 2000px;
-      margin-top: 30px;
-      z-index: 10;
+      max-height: 480px;
+      perspective: 1500px;
+      margin: 2em 0;
     }
 
     .page {
@@ -59,69 +64,16 @@
       width: 100%;
       height: 100%;
       background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 1.5em;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 30px;
       backface-visibility: hidden;
       transform-origin: left center;
-      transition: transform .8s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow .3s ease;
-      overflow: hidden;
-    }
-
-    .page::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 235, 238, 0.3) 0%, rgba(255, 209, 220, 0.2) 100%);
-      z-index: -1;
-    }
-
-    /* stacking order */
-    .page:nth-child(1) {
-      z-index: 10;
-    }
-
-    .page:nth-child(2) {
-      z-index: 9;
-    }
-
-    .page:nth-child(3) {
-      z-index: 8;
-    }
-
-    .page:nth-child(4) {
-      z-index: 7;
-    }
-
-    .page:nth-child(5) {
-      z-index: 6;
-    }
-
-    .page:nth-child(6) {
-      z-index: 5;
-    }
-
-    .page:nth-child(7) {
-      z-index: 4;
-    }
-
-    .page:nth-child(8) {
-      z-index: 3;
-    }
-
-    .page:nth-child(9) {
-      z-index: 2;
-    }
-
-    .page:nth-child(10) {
-      z-index: 1;
+      transition: transform .7s ease, box-shadow .3s ease;
     }
 
     .page.flipped {
@@ -130,289 +82,99 @@
     }
 
     .page:hover {
-      transform: scale(1.02);
-      box-shadow: 0 15px 40px rgba(233, 30, 99, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
-    /* typography + animations */
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5em;
-      color: var(--accent);
-      margin-bottom: 10px;
-      text-align: center;
-      animation: fadeIn 0.8s ease;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .subtitle {
-      font-family: 'Amatic SC', cursive;
-      font-size: 1.8em;
-      font-weight: bold;
-      color: var(--secondary);
-      margin-bottom: 20px;
-      text-align: center;
-      animation: fadeIn 1s ease;
-    }
-
-    .text {
-      font-size: 1.1em;
-      line-height: 1.8;
-      color: var(--text);
-      text-align: center;
-      margin-top: 10px;
-      animation: fadeIn 1.2s ease;
-      padding: 0 15px;
-    }
-
-    .ilove {
-      font-family: 'Pacifico', cursive;
-      font-size: 2em;
-      color: var(--accent);
-      margin-top: 30px;
-      animation: beat 1s infinite, fadeIn 1.4s ease;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes beat {
-
-      0%,
-      100% {
-        transform: scale(1)
-      }
-
-      50% {
-        transform: scale(1.1)
-      }
-    }
-
-    /* cartoon on cover */
-    .couple-avatar {
-      width: 180px;
-      height: 180px;
-      margin: 20px 0;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      background: #ffe0b2;
-      border-radius: 50%;
-      border: 3px solid #ffab91;
-      position: relative;
-      animation: fadeIn 1.2s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .avatar.male {
-      margin-right: -15px;
-      z-index: 2;
-    }
-
-    .avatar.female {
-      margin-left: -15px;
-      background: #ffcdd2;
-      border-color: #f48fb1;
-    }
-
-    .eye {
-      width: 12px;
-      height: 12px;
-      background: #333;
-      border-radius: 50%;
-      position: absolute;
-      top: 30px;
-      animation: blink 5s infinite;
-    }
-
-    .eye.left {
-      left: 18px
-    }
-
-    .eye.right {
-      right: 18px
-    }
-
-    .smile {
-      width: 40px;
-      height: 20px;
-      border-bottom: 3px solid #d84315;
-      border-radius: 0 0 50px 50px;
-      position: absolute;
-      bottom: 20px;
-    }
-
-    .heart-between {
-      position: absolute;
-      color: var(--accent);
-      font-size: 2em;
-      z-index: 3;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-
-      0%,
-      20%,
-      40%,
-      60%,
-      80%,
-      100% {
-        height: 12px
-      }
-
-      10%,
-      30%,
-      50%,
-      70%,
-      90% {
-        height: 2px
-      }
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0) scale(1)
-      }
-
-      50% {
-        transform: translateY(-10px) scale(1.1)
-      }
-    }
-
-    /* tap-zones with arrows */
     .nav-zone {
       position: absolute;
       top: 0;
       height: 100%;
       width: 50%;
-      z-index: 11;
+      z-index: 10;
       cursor: pointer;
     }
 
     .nav-zone.left {
-      left: 0
+      left: 0;
     }
 
     .nav-zone.right {
-      right: 0
+      right: 0;
     }
 
-    .arrow {
+    .nav-zone .arrow {
       position: absolute;
       top: 50%;
+      font-size: 2em;
       transform: translateY(-50%);
-      font-size: 2.5em;
-      color: rgba(233, 30, 99, 0.7);
-      animation: pulse 1.5s infinite;
+      color: var(--secondary);
       pointer-events: none;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .nav-zone.left .arrow {
-      left: 15px
+      left: 10px;
     }
 
     .nav-zone.right .arrow {
-      right: 15px
+      right: 10px;
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: translateY(-50%) scale(1)
-      }
-
-      50% {
-        transform: translateY(-50%) scale(1.3)
-      }
+    .subtitle {
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 1em;
+      text-align: center;
     }
 
-    /* gift-card below book */
+    .text {
+      font-size: 1em;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text);
+      padding: 0 1em;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .progress-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 1em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: transform .3s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
     .gift-card {
       background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
-      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 1.5em;
       text-align: center;
-      width: 90vw;
-      max-width: 400px;
-      margin: 30px auto 50px;
-      animation: slideUp 0.8s ease both;
-      position: relative;
-      overflow: hidden;
-      z-index: 5;
-    }
-
-    .gift-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 235, 238, 0.3) 0%, rgba(255, 209, 220, 0.2) 100%);
-      z-index: -1;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    .gift-card h2 {
-      font-family: 'Dancing Script', cursive;
-      color: var(--accent);
-      margin-bottom: 15px;
-      font-size: 2em;
-      animation: fadeIn 1s ease;
+      max-width: 380px;
+      margin-bottom: 2em;
     }
 
     .gift-box {
-      font-size: 4em;
+      font-size: 3em;
       cursor: pointer;
-      user-select: none;
-      transition: all .3s;
-      animation: fadeIn 1.2s ease, float 3s ease-in-out infinite;
       display: inline-block;
-      text-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+      margin: 0.5em 0;
     }
 
-    .gift-box:hover {
-      transform: rotate(-15deg) scale(1.2);
-      animation: none;
-    }
-
-    /* lightbox & audio */
     #lightbox {
       position: fixed;
       top: 0;
@@ -421,9 +183,8 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.9);
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       visibility: hidden;
       opacity: 0;
       transition: opacity .3s;
@@ -435,301 +196,34 @@
       opacity: 1;
     }
 
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 70vh;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 0.6s ease;
-      margin-bottom: 20px;
-    }
-
-    .lightbox-text {
-      color: white;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2em;
+    #lightbox .message {
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6em;
       text-align: center;
-      max-width: 80%;
-      margin-top: 20px;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    /* petals & hearts */
-    .flowers,
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .petal {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background: #ff80ab;
-      border-radius: 50% 50% 0 50%;
-      transform: rotate(45deg);
-      opacity: .8;
-      animation: fall linear infinite;
-      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
-    }
-
-    @keyframes fall {
-      0% {
-        top: -10px;
-        opacity: 1
-      }
-
-      100% {
-        top: 110vh;
-        opacity: 0
-      }
-    }
-
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: var(--accent);
-      transform: rotate(45deg);
-      opacity: .7;
-      animation: floatUp ease-in-out infinite;
-      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
-    }
-
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-
-    .heart::before {
-      top: -10px;
-      left: 0
-    }
-
-    .heart::after {
-      left: -10px;
-      top: 0
-    }
-
-    @keyframes floatUp {
-      0% {
-        bottom: -20px;
-        opacity: .8;
-        transform: translateX(0) rotate(45deg)
-      }
-
-      50% {
-        opacity: 1
-      }
-
-      100% {
-        bottom: 110vh;
-        transform: translateX(60px) rotate(45deg);
-        opacity: 0
-      }
-    }
-
-    /* decorative elements */
-    .page-decoration {
-      position: absolute;
-      opacity: 0.1;
-      z-index: -1;
-    }
-
-    .corner-heart {
-      position: absolute;
-      font-size: 3em;
-      color: var(--accent);
-      opacity: 0.2;
-    }
-
-    .top-left {
-      top: 10px;
-      left: 10px
-    }
-
-    .top-right {
-      top: 10px;
-      right: 10px
-    }
-
-    .bottom-left {
-      bottom: 10px;
-      left: 10px
-    }
-
-    .bottom-right {
-      bottom: 10px;
-      right: 10px
-    }
-
-    /* progress dots */
-    .progress-dots {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ccc;
-      transition: all 0.3s ease;
-    }
-
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.3);
-    }
-
-    /* music player */
-    .music-player {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-      cursor: pointer;
-      color: var(--accent);
-      font-size: 1.5em;
-      animation: pulse 2s infinite;
-    }
-
-    /* confetti */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      opacity: 0;
-    }
-
-    /* memory gallery */
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .memory-item {
-      width: 100%;
-      height: 0;
-      padding-bottom: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .memory-item:hover {
-      transform: scale(1.05);
-    }
-
-    .memory-item img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* responsive adjustments */
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      .subtitle {
-        font-size: 1.5em;
-      }
-
-      .text {
-        font-size: 1em;
-      }
-
-      .couple-avatar {
-        width: 150px;
-        height: 150px;
-      }
-
-      .avatar {
-        width: 70px;
-        height: 70px;
-      }
+      padding: 1em;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Flip-book -->
   <div class="book" id="book">
-    <!-- navigation zones -->
-    <div class="nav-zone left"><span class="arrow">❮</span></div>
-    <div class="nav-zone right"><span class="arrow">❯</span></div>
+    <div class="nav-zone left"><span class="arrow">‹</span></div>
+    <div class="nav-zone right"><span class="arrow">›</span></div>
 
     <div class="page">
-      <div class="corner-heart top-left">❤️</div>
-      <div class="corner-heart top-right">❤️</div>
-      <div class="corner-heart bottom-left">❤️</div>
-      <div class="corner-heart bottom-right">❤️</div>
-
-      <h1>Our 3-Month Journey</h1>
-      <p class="subtitle">For My Beloved Raveena</p>
-
-      <div class="couple-avatar">
-        <div class="avatar male">
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-          <div class="smile"></div>
-        </div>
-        <div class="heart-between">❤️</div>
-        <div class="avatar female">
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-          <div class="smile"></div>
-        </div>
-      </div>
-
-      <p class="text">Every moment with you has been magical</p>
+      <h1>Four Months Together</h1>
+      <p class="subtitle">To My Favorite Companion</p>
+      <p class="text">Every sunrise reminds me why these past 120 days have been so unforgettable. Thank you for being
+        my partner in laughter, adventure, and quiet moments alike.</p>
     </div>
 
     <div class="page">
-      <h1>Chapter 1</h1>
-      <p class="subtitle">The Beginning of Us</p>
-      <div class="memory-grid">
-        <div class="memory-item" style="background: #f48fb1;"></div>
-        <div class="memory-item" style="background: #f06292;"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <p class="text">
-        The day I met you, everything changed. 21st Feb became my favorite day. Your love for flowers, your cuteness,
-        our lunch
-        dates — I started falling for you from the very beginning.
-      </p>
+      <h1>Day 30</h1>
+      <p class="subtitle">Our First Milestone</p>
+      <p class="text">We shared our first hearty meal, and I knew we were onto something special. Your smile lights up
+        everything around us.</p>
       <div class="progress-dots">
         <div class="dot"></div>
         <div class="dot active"></div>
@@ -740,18 +234,10 @@
     </div>
 
     <div class="page">
-      <h1>Chapter 2</h1>
-      <p class="subtitle">Through Ups and Downs</p>
-      <i class="fas fa-heart"
-        style="font-size: 3em; color: var(--accent); margin: 15px 0; animation: beat 1s infinite;"></i>
-    </div>
-
-    <div class="page">
-      <p class="text">
-        I made mistakes, but I never gave up on us. Your smile means everything to me. I love making you happy, from
-        flowers to
-        our little gym moments. You’re my adorable princess.
-      </p>
+      <h1>Day 60</h1>
+      <p class="subtitle">Growing Stronger</p>
+      <p class="text">From challenges to triumphs, we faced it all. Through it, you showed me the true meaning of
+        partnership and trust.</p>
       <div class="progress-dots">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -762,244 +248,77 @@
     </div>
 
     <div class="page">
-      <h1>Chapter 3</h1>
-      <p class="subtitle">Always By Your Side</p>
-      <div class="memory-grid">
-        <div class="memory-item" style="background: #ba68c8;"></div>
-        <div class="memory-item" style="background: #ab47bc;"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <p class="text">
-        I know you’re busy and stressed, but I’m here — always. Your problems are mine too. We’ll face everything
-        together, with
-        love, patience, and support.
-      </p>
+      <h1>Day 90</h1>
+      <p class="subtitle">Adventures Shared</p>
+      <p class="text">Every adventure big or small has been brighter with you by my side. You make every moment truly
+        <span class="highlight">yours and ours</span>.</p>
       <div class="progress-dots">
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot active"></div>
         <div class="dot"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <h1>Chapter 4</h1>
-      <p class="subtitle">Dreams Ahead</p>
-      <i class="fas fa-star"
-        style="font-size: 3em; color: var(--accent); margin: 15px 0; animation: float 3s ease-in-out infinite;"></i>
-    </div>
-
-    <div class="page">
-      <p class="text">
-        I dream of growing old with you—laughing, learning, loving side by side.
-        Every single moment with you has been special.
-      </p>
-      <p class="ilove">I love you endlessly ❤️</p>
-      <div class="progress-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot active"></div>
       </div>
     </div>
 
     <div class="page">
       <h1>Surprise!</h1>
-      <p class="subtitle">Tap the gift box below</p>
+      <p class="subtitle">Tap Below</p>
       <div class="gift-box" onclick="openLightbox()">🎁</div>
-      <p style="margin-top: 20px; font-size: 0.9em;">(Make sure your sound is on!)</p>
     </div>
   </div>
 
-  <!-- floating petals & hearts -->
-  <div class="flowers"></div>
-  <div class="hearts"></div>
-
-  <!-- gift-card below -->
   <div class="gift-card">
-    <h2>Open Your Special Gift</h2>
+    <h2>120 Days of Magic</h2>
     <div class="gift-box" onclick="openLightbox()">🎁</div>
-    <p style="margin-top: 15px;">Click the gift to reveal your surprise</p>
+    <p>Click to see my special message for you</p>
   </div>
 
-  <!-- music player -->
-  <div class="music-player" id="musicToggle">
-    <i class="fas fa-music"></i>
-  </div>
-
-  <!-- lightbox + audio -->
   <div id="lightbox" onclick="closeLightbox()">
-    <img src="img.png" alt="Special Surprise">
-    <div class="lightbox-text">To My Beautiful Raveena ❤️</div>
+    <div class="message">
+      Cheers to four months of joy, growth, and endless smiles. Here’s to many more adventures ahead—together.
+    </div>
   </div>
-
-  <audio id="giftAudio" loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
 
   <script>
     const pages = Array.from(document.querySelectorAll('.page'));
     let idx = 0;
-    const audio = document.getElementById('giftAudio');
-    const lb = document.getElementById('lightbox');
     const leftZone = document.querySelector('.nav-zone.left');
     const rightZone = document.querySelector('.nav-zone.right');
     const dots = document.querySelectorAll('.dot');
-    const musicToggle = document.getElementById('musicToggle');
-    let isMusicPlaying = false;
 
-    // Initialize first dot as active
-    dots[0].classList.add('active');
-
+    function updateDots() {
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
     function flipNext() {
       if (idx < pages.length - 1) {
         pages[idx].classList.add('flipped');
-        idx++;
-        updateDots();
+        idx++; updateDots();
       }
     }
-
     function flipPrev() {
       if (idx > 0) {
-        idx--;
-        pages[idx].classList.remove('flipped');
+        idx--; pages[idx].classList.remove('flipped');
         updateDots();
       }
     }
-
-    function updateDots() {
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === idx);
-      });
-    }
-
     rightZone.addEventListener('click', flipNext);
     leftZone.addEventListener('click', flipPrev);
-
-    // swipe support
-    let startX = 0;
-    const book = document.getElementById('book');
-    book.addEventListener('touchstart', e => startX = e.changedTouches[0].screenX);
-    book.addEventListener('touchend', e => {
+    document.getElementById('book').addEventListener('touchstart', e => startX = e.changedTouches[0].screenX);
+    document.getElementById('book').addEventListener('touchend', e => {
       const diff = e.changedTouches[0].screenX - startX;
-      if (diff < -30) flipNext();
-      if (diff > 30) flipPrev();
+      if (diff < -40) flipNext();
+      if (diff > 40) flipPrev();
     });
 
     function openLightbox() {
-      lb.classList.add('open');
-      audio.currentTime = 61;
-      audio.play();
-      createConfetti();
-      isMusicPlaying = true;
-      musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+      document.getElementById('lightbox').classList.add('open');
     }
-
     function closeLightbox() {
-      lb.classList.remove('open');
-      audio.pause();
+      document.getElementById('lightbox').classList.remove('open');
     }
-
-    // music toggle
-    musicToggle.addEventListener('click', function () {
-      if (isMusicPlaying) {
-        audio.pause();
-        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-      } else {
-        audio.play();
-        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-      }
-      isMusicPlaying = !isMusicPlaying;
-    });
-
-    // generate petals & hearts
-    for (let i = 0; i < 50; i++) {
-      const p = document.createElement('div');
-      p.className = 'petal';
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.animationDuration = (4 + Math.random() * 4) + 's';
-      p.style.animationDelay = Math.random() * 2 + 's';
-      p.style.opacity = Math.random() * 0.5 + 0.3;
-      p.style.background = `hsl(${Math.random() * 30 + 330}, 100%, 75%)`;
-      document.querySelector('.flowers').append(p);
-    }
-
-    for (let i = 0; i < 40; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.style.left = Math.random() * 100 + 'vw';
-      h.style.animationDuration = (3 + Math.random() * 3) + 's';
-      h.style.animationDelay = Math.random() * 1 + 's';
-      h.style.opacity = Math.random() * 0.5 + 0.3;
-      document.querySelector('.hearts').append(h);
-    }
-
-    // create confetti explosion
-    function createConfetti() {
-      const colors = ['#ff6b8b', '#ff8e9e', '#ff4757', '#ffb8c6', '#ff9eb5'];
-
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = Math.random() * 100 + 'vh';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.opacity = '1';
-
-        document.body.appendChild(confetti);
-
-        // Animation
-        const animationDuration = Math.random() * 3 + 2;
-        confetti.style.animation = `confettiFall ${animationDuration}s linear forwards`;
-
-        // Create keyframes dynamically
-        const keyframes = `
-          @keyframes confettiFall {
-            0% {
-              transform: translateY(-100vh) rotate(0deg);
-              opacity: 1;
-            }
-            100% {
-              transform: translateY(100vh) rotate(${Math.random() * 360}deg);
-              opacity: 0;
-            }
-          }
-        `;
-
-        const style = document.createElement('style');
-        style.innerHTML = keyframes;
-        document.head.appendChild(style);
-
-        // Remove after animation
-        setTimeout(() => {
-          confetti.remove();
-          style.remove();
-        }, animationDuration * 1000);
-      }
-    }
-
-    // Add decorative elements to pages
-    pages.forEach(page => {
-      // Add some random decorative elements
-      if (Math.random() > 0.5) {
-        const deco = document.createElement('div');
-        deco.className = 'page-decoration';
-        deco.style.width = Math.random() * 100 + 50 + 'px';
-        deco.style.height = Math.random() * 100 + 50 + 'px';
-        deco.style.background = `radial-gradient(circle, rgba(255,107,139,0.1) 0%, rgba(255,107,139,0) 70%)`;
-        deco.style.top = Math.random() * 80 + 10 + '%';
-        deco.style.left = Math.random() * 80 + 10 + '%';
-        page.appendChild(deco);
-      }
-    });
   </script>
+
 </body>
 
 </html>
