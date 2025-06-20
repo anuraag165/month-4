@@ -1,324 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Our Four-Month Milestone</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;600&display=swap"
-    rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Four Months of Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #355C7D;
-      /* deep blue */
       --secondary: #6C5B7B;
-      /* purple */
       --accent: #C06C84;
-      /* pinkish */
       --light-bg: #F8B195;
-      /* soft peach */
       --dark-text: #2A363B;
-      /* near-black */
       --text: #59474A;
-      /* muted brown */
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
       font-family: 'Raleway', sans-serif;
       background: var(--light-bg);
       color: var(--dark-text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; overflow: hidden;
     }
-
-    h1,
+    .slider {
+      position: relative;
+      width: 90vw; max-width: 360px;
+      height: 70vh; max-height: 460px;
+      perspective: 1200px;
+    }
+    .slide {
+      position: absolute; top:0; left:0;
+      width:100%; height:100%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      padding: 1.5em;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      backface-visibility: hidden;
+      transform-origin: left center;
+      transition: transform .7s ease, opacity .4s ease;
+      opacity: 1;
+    }
+    .slide.hidden { opacity: 0; pointer-events: none; }
+    .nav {
+      position: absolute; top:50%;
+      transform: translateY(-50%);
+      font-size: 2em; color: var(--secondary);
+      width: 40px; height: 40px; line-height: 40px;
+      text-align: center; cursor: pointer;
+      user-select: none;
+      z-index: 10;
+    }
+    .nav.left { left: -10px; }
+    .nav.right { right: -10px; }
     h2 {
       font-family: 'Montserrat', sans-serif;
       color: var(--primary);
       margin-bottom: 0.5em;
-    }
-
-    .book {
-      position: relative;
-      width: 90vw;
-      max-width: 380px;
-      height: 70vh;
-      max-height: 480px;
-      perspective: 1500px;
-      margin: 2em 0;
-    }
-
-    .page {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      padding: 1.5em;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      backface-visibility: hidden;
-      transform-origin: left center;
-      transition: transform .7s ease, box-shadow .3s ease;
-    }
-
-    .page.flipped {
-      transform: rotateY(-180deg);
-      visibility: hidden;
-    }
-
-    .page:hover {
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .nav-zone {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 50%;
-      z-index: 10;
-      cursor: pointer;
-    }
-
-    .nav-zone.left {
-      left: 0;
-    }
-
-    .nav-zone.right {
-      right: 0;
-    }
-
-    .nav-zone .arrow {
-      position: absolute;
-      top: 50%;
-      font-size: 2em;
-      transform: translateY(-50%);
-      color: var(--secondary);
-      pointer-events: none;
-    }
-
-    .nav-zone.left .arrow {
-      left: 10px;
-    }
-
-    .nav-zone.right .arrow {
-      right: 10px;
-    }
-
-    .subtitle {
-      font-weight: 600;
-      color: var(--secondary);
-      margin-bottom: 1em;
       text-align: center;
     }
-
     .text {
-      font-size: 1em;
-      line-height: 1.6;
-      text-align: center;
-      color: var(--text);
-      padding: 0 1em;
+      font-size: 1em; line-height: 1.6;
+      text-align: center; color: var(--text);
+      margin: 0 1em;
     }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: 700;
+    .dot-container {
+      display: flex; gap: 6px; margin-top: 1.5em;
     }
-
-    .progress-dots {
-      display: flex;
-      gap: 6px;
-      margin-top: 1em;
-    }
-
     .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ccc;
-      transition: transform .3s;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #ccc; transition: background .3s, transform .3s;
     }
-
-    .dot.active {
-      background: var(--accent);
-      transform: scale(1.3);
-    }
-
-    .gift-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      padding: 1.5em;
-      text-align: center;
-      max-width: 380px;
-      margin-bottom: 2em;
-    }
-
-    .gift-box {
-      font-size: 3em;
-      cursor: pointer;
-      display: inline-block;
-      margin: 0.5em 0;
-    }
-
-    #lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity .3s;
-      z-index: 2000;
-    }
-
-    #lightbox.open {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    #lightbox .message {
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.6em;
-      text-align: center;
-      padding: 1em;
-    }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
   </style>
 </head>
-
 <body>
 
-  <div class="book" id="book">
-    <div class="nav-zone left"><span class="arrow">‹</span></div>
-    <div class="nav-zone right"><span class="arrow">›</span></div>
+  <div class="slider" id="slider">
+    <div class="nav left" id="prev">‹</div>
+    <div class="nav right" id="next">›</div>
 
-    <div class="page">
-      <h1>Four Months Together</h1>
-      <p class="subtitle">To My Favorite Companion</p>
-      <p class="text">Every sunrise reminds me why these past 120 days have been so unforgettable. Thank you for being
-        my partner in laughter, adventure, and quiet moments alike.</p>
+    <!-- Slide 1 -->
+    <div class="slide" data-index="0">
+      <h2>120 Days Together</h2>
+      <p class="text">
+        From our first coffee date to this very moment, every day has been a new adventure.
+      </p>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide hidden" data-index="1">
+      <h2>Your Laughter</h2>
+      <p class="text">
+        Your laughter became my favorite melody. It brightens even the cloudiest days.
+      </p>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide hidden" data-index="2">
+      <h2>Your Strength</h2>
+      <p class="text">
+        Watching you face challenges with grace reminds me how lucky I am to stand beside you.
+      </p>
+    </div>
+    <!-- Slide 4 -->
+    <div class="slide hidden" data-index="3">
+      <h2>Your Kindness</h2>
+      <p class="text">
+        Your kindness inspires me to be a better person every single day.
+      </p>
+    </div>
+    <!-- Slide 5 -->
+    <div class="slide hidden" data-index="4">
+      <h2>Our Shared Dreams</h2>
+      <p class="text">
+        Building dreams with you has been the greatest joy—thank you for dreaming with me.
+      </p>
+    </div>
+    <!-- Slide 6 -->
+    <div class="slide hidden" data-index="5">
+      <h2>Here's to Us</h2>
+      <p class="text">
+        Cheers to four months of memories—and to countless more waiting just around the corner.
+      </p>
     </div>
 
-    <div class="page">
-      <h1>Day 30</h1>
-      <p class="subtitle">Our First Milestone</p>
-      <p class="text">We shared our first hearty meal, and I knew we were onto something special. Your smile lights up
-        everything around us.</p>
-      <div class="progress-dots">
-        <div class="dot"></div>
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <h1>Day 60</h1>
-      <p class="subtitle">Growing Stronger</p>
-      <p class="text">From challenges to triumphs, we faced it all. Through it, you showed me the true meaning of
-        partnership and trust.</p>
-      <div class="progress-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <h1>Day 90</h1>
-      <p class="subtitle">Adventures Shared</p>
-      <p class="text">Every adventure big or small has been brighter with you by my side. You make every moment truly
-        <span class="highlight">yours and ours</span>.</p>
-      <div class="progress-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot active"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <div class="page">
-      <h1>Surprise!</h1>
-      <p class="subtitle">Tap Below</p>
-      <div class="gift-box" onclick="openLightbox()">🎁</div>
-    </div>
-  </div>
-
-  <div class="gift-card">
-    <h2>120 Days of Magic</h2>
-    <div class="gift-box" onclick="openLightbox()">🎁</div>
-    <p>Click to see my special message for you</p>
-  </div>
-
-  <div id="lightbox" onclick="closeLightbox()">
-    <div class="message">
-      Cheers to four months of joy, growth, and endless smiles. Here’s to many more adventures ahead—together.
+    <div class="dot-container" id="dots">
+      <div class="dot active" data-index="0"></div>
+      <div class="dot" data-index="1"></div>
+      <div class="dot" data-index="2"></div>
+      <div class="dot" data-index="3"></div>
+      <div class="dot" data-index="4"></div>
+      <div class="dot" data-index="5"></div>
     </div>
   </div>
 
   <script>
-    const pages = Array.from(document.querySelectorAll('.page'));
-    let idx = 0;
-    const leftZone = document.querySelector('.nav-zone.left');
-    const rightZone = document.querySelector('.nav-zone.right');
-    const dots = document.querySelectorAll('.dot');
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    let current = 0;
 
-    function updateDots() {
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    function showSlide(idx) {
+      slides.forEach(s => s.classList.add('hidden'));
+      dots.forEach(d => d.classList.remove('active'));
+      slides[idx].classList.remove('hidden');
+      dots[idx].classList.add('active');
+      current = idx;
     }
-    function flipNext() {
-      if (idx < pages.length - 1) {
-        pages[idx].classList.add('flipped');
-        idx++; updateDots();
-      }
-    }
-    function flipPrev() {
-      if (idx > 0) {
-        idx--; pages[idx].classList.remove('flipped');
-        updateDots();
-      }
-    }
-    rightZone.addEventListener('click', flipNext);
-    leftZone.addEventListener('click', flipPrev);
-    document.getElementById('book').addEventListener('touchstart', e => startX = e.changedTouches[0].screenX);
-    document.getElementById('book').addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].screenX - startX;
-      if (diff < -40) flipNext();
-      if (diff > 40) flipPrev();
+
+    document.getElementById('next').onclick = () => {
+      const nxt = current < slides.length - 1 ? current + 1 : 0;
+      showSlide(nxt);
+    };
+    document.getElementById('prev').onclick = () => {
+      const prev = current > 0 ? current - 1 : slides.length - 1;
+      showSlide(prev);
+    };
+    dots.forEach(dot => {
+      dot.onclick = () => showSlide(Number(dot.dataset.index));
     });
-
-    function openLightbox() {
-      document.getElementById('lightbox').classList.add('open');
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-    }
   </script>
 
 </body>
-
 </html>
