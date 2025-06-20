@@ -29,6 +29,11 @@
       height: 100vh;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
+      position: relative;
+    }
+
+    #bgMusic {
+      display: none;
     }
 
     .section {
@@ -55,15 +60,16 @@
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
       margin-bottom: .5rem;
+      color: var(--accent);
     }
 
-    p {
+    .text {
       font-size: 1.1rem;
       max-width: 80%;
       line-height: 1.5;
+      color: var(--text-dark);
     }
 
-    /* subtle sparkles */
     .sparkle {
       position: absolute;
       width: 6px;
@@ -92,50 +98,70 @@
 
 <body>
 
+  <!-- background music -->
+  <audio id="bgMusic" src="song.mp3" autoplay loop></audio>
+
   <div class="section" id="s1">
-    <h1>120 Days of Kindness</h1>
-    <p>Raveena, your warmth lights up every room you enter. Your kindness is a gift to everyone who knows you.</p>
+    <h1>Happy 4 Months, Cutie Pie! 🎉</h1>
+    <p class="text">Your smile brightens my world every single day.</p>
   </div>
 
   <div class="section" id="s2">
-    <h1>Your Generosity</h1>
-    <p>Whether it’s a smile, a helping hand, or a thoughtful word, you always give more than you take.</p>
+    <h1>Your Love for Flowers 🌸</h1>
+    <p class="text">Watching you light up over a bouquet is one of my favorite moments.</p>
   </div>
 
   <div class="section" id="s3">
-    <h1>Your Strength</h1>
-    <p>Through ups and downs, you stand tall with grace. Watching you navigate life inspires me every day.</p>
+    <h1>Your Cuteness 😊</h1>
+    <p class="text">Every little quirk of yours makes me smile—your cuteness is endless.</p>
   </div>
 
   <div class="section" id="s4">
-    <h1>Your Laughter</h1>
-    <p>Your laugh is a reminder that joy can be found in the simplest moments.</p>
+    <h1>Special Phrases 💬</h1>
+    <p class="text">“I changed my mind”<br>
+      “Jab bole ke raha tab bola nahi, ab bole koi fayda nahi”<br>
+      “And Ravya will call you bhaiya”<br>
+      These words are uniquely you—and I cherish each one.</p>
   </div>
 
   <div class="section" id="s5">
-    <h1>Our Shared Moments</h1>
-    <p>From quiet talks to big adventures, every moment with you feels like home.</p>
+    <h1>That Bouquet Smile 💐</h1>
+    <p class="text">I love to see that grin on your face whenever I surprise you with flowers.</p>
   </div>
 
   <div class="section" id="s6">
-    <h1>Here’s to You</h1>
-    <p>Thank you for being exactly who you are. Four months down, countless memories to go.</p>
+    <h1>You’re an Angel 😇</h1>
+    <p class="text">Truly, you bring so much light and kindness into every moment.</p>
+  </div>
+
+  <div class="section" id="s7">
+    <h1>Always Here 🤝</h1>
+    <p class="text">I will always be here whenever you need me, as your support and your friend.</p>
+  </div>
+
+  <div class="section" id="s8">
+    <h1>Our Shared Moments ✨</h1>
+    <p class="text">From laughter to quiet talks, every memory with you feels like a treasure.</p>
+  </div>
+
+  <div class="section" id="s9">
+    <h1>Here’s to Many More ❤️</h1>
+    <p class="text">Four amazing months down—can’t wait for everything still to come.</p>
   </div>
 
   <script>
-    // Reveal on scroll
-    const sections = document.querySelectorAll('.section');
-    const opts = { threshold: 0.3 };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
-    }, opts);
-    sections.forEach(s => io.observe(s));
+    // background music volume
+    const bg = document.getElementById('bgMusic');
+    bg.volume = 0.4;
 
-    // add random sparkles
+    // reveal sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+
+    // generate sparkles
     function makeSparkles() {
       const count = 30;
       for (let i = 0; i < count; i++) {
@@ -149,6 +175,7 @@
     }
     makeSparkles();
   </script>
+
 </body>
 
 </html>
