@@ -32,11 +32,6 @@
       position: relative;
     }
 
-    #bgMusic {
-      display: none;
-    }
-
-    /* hidden audio element */
     .section {
       position: relative;
       height: 100vh;
@@ -49,12 +44,22 @@
       padding: 2rem;
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity .6s ease-out, transform .6s ease-out;
     }
 
     .section.visible {
-      opacity: 1;
-      transform: translateY(0);
+      animation: fadeInUp .8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
@@ -98,9 +103,6 @@
 </head>
 
 <body>
-
-  <!-- hidden audio -->
-  <audio id="bgMusic" src="song.mp3" loop></audio>
 
   <div class="section" id="s1">
     <h1>Happy 4 Months, Cutie Pie! 🎉</h1>
@@ -153,30 +155,16 @@
   </div>
 
   <script>
-    const bg = document.getElementById('bgMusic');
-    bg.volume = 0.4;
-
-    // Try to autoplay on load; if blocked, unlock on first user interaction
-    window.addEventListener('load', () => {
-      bg.play().catch(() => {
-        const unlock = () => {
-          bg.play();
-          window.removeEventListener('click', unlock);
-          window.removeEventListener('scroll', unlock);
-        };
-        window.addEventListener('click', unlock, { once: true });
-        window.addEventListener('scroll', unlock, { once: true });
-      });
-    });
-
-    // reveal sections on scroll
+    // reveal sections when they enter viewport
     const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
     }, { threshold: 0.3 });
-    sections.forEach(s => observer.observe(s));
+    sections.forEach(s => io.observe(s));
 
-    // generate sparkles
+    // gentle floating sparkles
     (function makeSparkles() {
       for (let i = 0; i < 30; i++) {
         const sp = document.createElement('div');
