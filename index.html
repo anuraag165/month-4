@@ -36,6 +36,7 @@
       display: none;
     }
 
+    /* hidden audio element */
     .section {
       position: relative;
       height: 100vh;
@@ -98,8 +99,8 @@
 
 <body>
 
-  <!-- background music -->
-  <audio id="bgMusic" src="song.mp3" autoplay loop></audio>
+  <!-- hidden audio -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
 
   <div class="section" id="s1">
     <h1>Happy 4 Months, Cutie Pie! 🎉</h1>
@@ -118,10 +119,12 @@
 
   <div class="section" id="s4">
     <h1>Special Phrases 💬</h1>
-    <p class="text">“I changed my mind”<br>
+    <p class="text">
+      “I changed my mind”<br>
       “Jab bole ke raha tab bola nahi, ab bole koi fayda nahi”<br>
       “And Ravya will call you bhaiya”<br>
-      These words are uniquely you—and I cherish each one.</p>
+      These words are uniquely you—and I cherish each one.
+    </p>
   </div>
 
   <div class="section" id="s5">
@@ -150,9 +153,21 @@
   </div>
 
   <script>
-    // background music volume
     const bg = document.getElementById('bgMusic');
     bg.volume = 0.4;
+
+    // Try to autoplay on load; if blocked, unlock on first user interaction
+    window.addEventListener('load', () => {
+      bg.play().catch(() => {
+        const unlock = () => {
+          bg.play();
+          window.removeEventListener('click', unlock);
+          window.removeEventListener('scroll', unlock);
+        };
+        window.addEventListener('click', unlock, { once: true });
+        window.addEventListener('scroll', unlock, { once: true });
+      });
+    });
 
     // reveal sections on scroll
     const sections = document.querySelectorAll('.section');
@@ -162,9 +177,8 @@
     sections.forEach(s => observer.observe(s));
 
     // generate sparkles
-    function makeSparkles() {
-      const count = 30;
-      for (let i = 0; i < count; i++) {
+    (function makeSparkles() {
+      for (let i = 0; i < 30; i++) {
         const sp = document.createElement('div');
         sp.className = 'sparkle';
         sp.style.top = Math.random() * 100 + 'vh';
@@ -172,8 +186,7 @@
         sp.style.animationDelay = Math.random() * 4 + 's';
         document.body.append(sp);
       }
-    }
-    makeSparkles();
+    })();
   </script>
 
 </body>
